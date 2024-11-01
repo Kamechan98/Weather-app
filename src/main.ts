@@ -14,7 +14,7 @@ document.getElementById("getWeather")?.addEventListener("click", () => {
 
 const getWeather = async (lng: number, lat: number) => {
   const result = await axios.get<IWeather>(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=f33373090626c93c497865cb41e75619&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=e8afa6bb6ac1bf217d79e3e32ff54a3f&units=metric`
   );
 
   console.log(result.data);
@@ -27,6 +27,7 @@ const getWeather = async (lng: number, lat: number) => {
   const temp = document.createElement("span");
   const sunrise = document.createElement("p");
   const sunset = document.createElement("p");
+  const icon = document.createElement("img");
 
   name.innerHTML = result.data.name;
   country.innerHTML = result.data.sys.country;
@@ -34,10 +35,12 @@ const getWeather = async (lng: number, lat: number) => {
   temp.innerHTML = result.data.main.temp.toString() + " C";
   sunrise.innerHTML = result.data.sys.sunrise;
   sunset.innerHTML = result.data.sys.sunset;
+  icon.src = `https://openweathermap.org/img/w/${result.data.weather[0].icon}.png`;
 
   container?.appendChild(name);
   container?.appendChild(country);
   container?.appendChild(pTag);
+  container?.appendChild(icon);
   container?.appendChild(temp);
   container?.appendChild(sunrise);
   container?.appendChild(sunset);

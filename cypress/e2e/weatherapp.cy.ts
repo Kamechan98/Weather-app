@@ -33,5 +33,6 @@ describe("Weather app tests", () => {
     cy.get("h2").should("contain.text", "Det regnar här i Stockholm idag");
     cy.get("p").should("contain.text", "Du har det säkre bättre än jag");
     cy.get("span").should("contain.text", "30");
+    cy.get("img").should("have.attr", "src").and("include", "10d");
   });
 });
